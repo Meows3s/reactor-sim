@@ -1,0 +1,54 @@
+# Build directories
+build/
+build-*/
+cmake-build-*/
+out/
+
+# CMake generated files (for in-source builds)
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+install_manifest.txt
+compile_commands.json
+_deps/
+
+# Qt generated files
+*_autogen/
+moc_*.cpp
+moc_*.h
+ui_*.h
+qrc_*.cpp
+*.qm
+.qt/
+.rcc/
+.moc/
+.uic/
+
+# Compiled output
+*.o
+*.obj
+*.a
+*.so
+*.so.*
+*.lib
+*.dll
+*.exe
+*.dylib
+
+# Editor / IDE
+.vscode/
+.idea/
+*.user
+CMakeLists.txt.user*
+.cache/
+*.swp
+*~
+
+# Profiling / debug output
+*.log
+core
+vgcore.*
+callgrind.out.*
+perf.data*
