@@ -155,77 +155,29 @@ reactor_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor_autogen.dir/build.make CMakeFiles/reactor_autogen.dir/build
 .PHONY : reactor_autogen/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+lib/qcustomplot.o: lib/qcustomplot.cpp.o
+.PHONY : lib/qcustomplot.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/main.cpp.o
-.PHONY : main.cpp.o
+lib/qcustomplot.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/lib/qcustomplot.cpp.o
+.PHONY : lib/qcustomplot.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
-
-# target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/main.cpp.i
-.PHONY : main.cpp.i
-
-main.s: main.cpp.s
-.PHONY : main.s
-
-# target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/main.cpp.s
-.PHONY : main.cpp.s
-
-plots.o: plots.cpp.o
-.PHONY : plots.o
-
-# target to build an object file
-plots.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/plots.cpp.o
-.PHONY : plots.cpp.o
-
-plots.i: plots.cpp.i
-.PHONY : plots.i
+lib/qcustomplot.i: lib/qcustomplot.cpp.i
+.PHONY : lib/qcustomplot.i
 
 # target to preprocess a source file
-plots.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/plots.cpp.i
-.PHONY : plots.cpp.i
+lib/qcustomplot.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/lib/qcustomplot.cpp.i
+.PHONY : lib/qcustomplot.cpp.i
 
-plots.s: plots.cpp.s
-.PHONY : plots.s
-
-# target to generate assembly for a file
-plots.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/plots.cpp.s
-.PHONY : plots.cpp.s
-
-reactor.o: reactor.cpp.o
-.PHONY : reactor.o
-
-# target to build an object file
-reactor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/reactor.cpp.o
-.PHONY : reactor.cpp.o
-
-reactor.i: reactor.cpp.i
-.PHONY : reactor.i
-
-# target to preprocess a source file
-reactor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/reactor.cpp.i
-.PHONY : reactor.cpp.i
-
-reactor.s: reactor.cpp.s
-.PHONY : reactor.s
+lib/qcustomplot.s: lib/qcustomplot.cpp.s
+.PHONY : lib/qcustomplot.s
 
 # target to generate assembly for a file
-reactor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/reactor.cpp.s
-.PHONY : reactor.cpp.s
+lib/qcustomplot.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/lib/qcustomplot.cpp.s
+.PHONY : lib/qcustomplot.cpp.s
 
 reactor_autogen/mocs_compilation.o: reactor_autogen/mocs_compilation.cpp.o
 .PHONY : reactor_autogen/mocs_compilation.o
@@ -251,29 +203,77 @@ reactor_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/reactor_autogen/mocs_compilation.cpp.s
 .PHONY : reactor_autogen/mocs_compilation.cpp.s
 
-third_party/qcustomplot/qcustomplot.o: third_party/qcustomplot/qcustomplot.cpp.o
-.PHONY : third_party/qcustomplot/qcustomplot.o
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
 
 # target to build an object file
-third_party/qcustomplot/qcustomplot.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/third_party/qcustomplot/qcustomplot.cpp.o
-.PHONY : third_party/qcustomplot/qcustomplot.cpp.o
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-third_party/qcustomplot/qcustomplot.i: third_party/qcustomplot/qcustomplot.cpp.i
-.PHONY : third_party/qcustomplot/qcustomplot.i
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-third_party/qcustomplot/qcustomplot.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/third_party/qcustomplot/qcustomplot.cpp.i
-.PHONY : third_party/qcustomplot/qcustomplot.cpp.i
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-third_party/qcustomplot/qcustomplot.s: third_party/qcustomplot/qcustomplot.cpp.s
-.PHONY : third_party/qcustomplot/qcustomplot.s
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-third_party/qcustomplot/qcustomplot.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/third_party/qcustomplot/qcustomplot.cpp.s
-.PHONY : third_party/qcustomplot/qcustomplot.cpp.s
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
+
+src/plots.o: src/plots.cpp.o
+.PHONY : src/plots.o
+
+# target to build an object file
+src/plots.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/plots.cpp.o
+.PHONY : src/plots.cpp.o
+
+src/plots.i: src/plots.cpp.i
+.PHONY : src/plots.i
+
+# target to preprocess a source file
+src/plots.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/plots.cpp.i
+.PHONY : src/plots.cpp.i
+
+src/plots.s: src/plots.cpp.s
+.PHONY : src/plots.s
+
+# target to generate assembly for a file
+src/plots.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/plots.cpp.s
+.PHONY : src/plots.cpp.s
+
+src/reactor.o: src/reactor.cpp.o
+.PHONY : src/reactor.o
+
+# target to build an object file
+src/reactor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/reactor.cpp.o
+.PHONY : src/reactor.cpp.o
+
+src/reactor.i: src/reactor.cpp.i
+.PHONY : src/reactor.i
+
+# target to preprocess a source file
+src/reactor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/reactor.cpp.i
+.PHONY : src/reactor.cpp.i
+
+src/reactor.s: src/reactor.cpp.s
+.PHONY : src/reactor.s
+
+# target to generate assembly for a file
+src/reactor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/reactor.cpp.s
+.PHONY : src/reactor.cpp.s
 
 # Help Target
 help:
@@ -286,21 +286,21 @@ help:
 	@echo "... reactor_autogen"
 	@echo "... reactor_autogen_timestamp_deps"
 	@echo "... reactor"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
-	@echo "... plots.o"
-	@echo "... plots.i"
-	@echo "... plots.s"
-	@echo "... reactor.o"
-	@echo "... reactor.i"
-	@echo "... reactor.s"
+	@echo "... lib/qcustomplot.o"
+	@echo "... lib/qcustomplot.i"
+	@echo "... lib/qcustomplot.s"
 	@echo "... reactor_autogen/mocs_compilation.o"
 	@echo "... reactor_autogen/mocs_compilation.i"
 	@echo "... reactor_autogen/mocs_compilation.s"
-	@echo "... third_party/qcustomplot/qcustomplot.o"
-	@echo "... third_party/qcustomplot/qcustomplot.i"
-	@echo "... third_party/qcustomplot/qcustomplot.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
+	@echo "... src/plots.o"
+	@echo "... src/plots.i"
+	@echo "... src/plots.s"
+	@echo "... src/reactor.o"
+	@echo "... src/reactor.i"
+	@echo "... src/reactor.s"
 .PHONY : help
 
 
