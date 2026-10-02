@@ -1,5 +1,8 @@
+#include "constants.h"
+#include <vector>
 /*
  * assumptions:
+ *  PWR
  *  uranium in core does not deplete (looking at short timescale)
  *  containment vessel does not heat up meaningfully
  *
@@ -11,30 +14,26 @@ public:
   void setControlRodPos(float);
   void setNeutronsExternal(long long);
   // getters / calc-ers
-  float calcWaterTemp(void);
-  float calcFuelTemp(void);
+  void calcCoreTemp(void);
 
 private:
   // nuclear parameters, fixed
   float enrichment = 0.1; // how much of fuel is u235 (normalized)
-  float fuelID = 0.1;     // m
-  float fuelOD = 0.5;     // m
+  float fuelXSize = 0.25; // m
+  float fuelYSize = 0.25; // m
+  float fuelXOrigin = 0.25;
+  float fuelYOrigin = 0.25;
+
+  float vesselXSize = 3; // m
+  float vesselYSize = 3; // m
 
   // core nuclear state
   float k;
-  long long neutronsFast;
-  long long neutronsThermal;
-  long long neutronsExternal = 100000000000; // non-fission neutrons injected by neutron source
-
-  // core mechanical state
-  float controlRodPos; // m extended from top
-  float fuelTemp;
+  std::vector<std::vector<float>> coreTemp;
+  std::vector<std::vector<float>> nFlux;
 
   // core coolant state
-  float waterTemp; // deg C
-  float waterVoids;
   float waterFlowRate; // l/s through core
-  float waterPressure; // bar
   float boronConcentration;
 
   // core power state
@@ -50,9 +49,15 @@ void reactor::setWaterFlowRate(float flowSetpoint) { this->waterFlowRate = flowS
 
 void reactor::setControlRodPos(float posSetpoint) { this->controlRodPos = posSetpoint; }
 
-void reactor::setNeutronsExternal(long long neutronSetpoint) {}
-
 // derived from core conditions:
-float reactor::calcWaterTemp() { return 0.0; }
+void reactor::calcCoreTemp(void) {
 
-float reactor::calcFuelTemp() { return 0.0; }
+  for (int x = 0; x < SIM_CELLS_X; x++) {
+    for (int y = 0; y < SIM_CELLS_Y; y++) {
+    }
+  }
+
+  return 0.0;
+}
+
+void reactor::calcNFlux() { return 0.0; }
