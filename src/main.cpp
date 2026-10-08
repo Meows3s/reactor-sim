@@ -1,32 +1,32 @@
+#include "constants.h"
 #include "lib/qcustomplot.h"
+#include "sim.h"
 #include <QApplication>
 
 int main(int argc, char** argv) {
   QApplication app(argc, argv);
 
-  QCustomPlot neutronFlux; // heatmap
-  QCustomPlot coreTemp;    // heatmap, literally
-  QCustomPlot k;           // xy plot with respect to t
+  sim reactorSim;
+  // reactorSim.tick(0.01);
 
-  auto* neutronFluxMap = new QCPColorMap(neutronFlux.xAxis, neutronFlux.yAxis);
+  QCustomPlot coreTemp; // heatmap, literally
   auto* coreTempMap = new QCPColorMap(coreTemp.xAxis, coreTemp.yAxis);
 
-  k.addGraph();
+  coreTempMap->data()->setSize(SIM_CELLS_X, SIM_CELLS_Y); // set pixel size
+  coreTempMap->data()->setRange(QCPRange(0, SIM_CELLS_X), QCPRange(0, SIM_CELLS_Y));
 
-  QVector<double> x, y;
-  for (int i = 0; i < 200; ++i) {
-    x << i * 0.05;
-    y << std::sin(i * 0.05);
+  for (int x = 0; x < SIM_CELLS_X; x++) {
+    for (int y = 0; y < SIM_CELLS_Y; y++) {
+      coreTempMap->data()->setData(x, y, (x * y) - (y * y * 3));
+    }
   }
 
-  k.graph(0)->setData(x, y);
-  k.setWindowTitle("k effective");
-  k.xAxis->setLabel("");
-  k.yAxis->setLabel("deg c");
-  k.rescaleAxes();
+  coreTempMap->setGradient(QCPColorGradient::gpThermal);
+  coreTempMap->rescaleDataRange();
 
-  k.resize(800, 500);
-  k.show();
+  coreTemp.rescaleAxes();
+  coreTemp.resize(400, 400);
+  coreTemp.show();
 
   return app.exec();
 }
