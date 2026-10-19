@@ -14,20 +14,10 @@ sim::sim(const char* filename) {
 
   // build the map
   // TODO: make this extensible... somehow
-  std::map<std::string, material> matMap = {
-      {"pu239",      pu239     },
-      {"u233",       u233      },
-      {"u235",       u235      },
-      {"u238",       u238      },
-      {"water",      water     },
-      {"waterHeavy", waterHeavy},
-      {"beryllium",  beryllium },
-      {"lithium",    lithium   },
-      {"boron",      boron     },
-      {"steel",      steel     },
-      {"aluminum",   aluminum  },
-      {"glass",      glass     }
-  };
+  std::map<std::string, material> matMap = {{"pu239", pu239},         {"u233", u233},         {"u235", u235},
+                                            {"u238", u238},           {"water", water},       {"waterHeavy", waterHeavy},
+                                            {"beryllium", beryllium}, {"lithium", lithium},   {"boron", boron},
+                                            {"steel", steel},         {"aluminum", aluminum}, {"glass", glass}};
 
   std::ifstream setupFile(filename);
 

@@ -1,5 +1,7 @@
+#pragma once
 #include "constants.h"
 #include "materials.h"
+#include <vector>
 
 class simCell {
 public:
@@ -20,9 +22,8 @@ class sim {
 public:
   int fastTick();
   int thermalTick();
-
-  simCell state[SIM_CELLS_X * SIM_CELLS_Y]; // fully updated physics tick
-
   void dump();
   sim(const char* filename); // constructor, also loads the sim from a file
+
+  std::vector<simCell> state;
 };

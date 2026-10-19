@@ -12,7 +12,15 @@
  *   sigmaA           : barns     thermal (2200 m/s) neutron absorption cross section,
  *                      per molecule for compounds, natural isotopic mix unless noted
  *   density          : g/cm^3
+ *   color            : 0-255 per channel display color; unique per material
  */
+
+// Display color, 0-255 per channel (straight into QColor / any RGB sink).
+struct colorRGB {
+  int r;
+  int g;
+  int b;
+};
 
 class material {
 public:
@@ -29,9 +37,14 @@ public:
   double atomicMass; // g/mol
   double sigmaA;     // barns
   double density;    // g/cm^3
+
+  // display
+  colorRGB color; // RGB, unique per material
 };
 
 // --- fuel / fissile metals ---------------------------------------------------
+// Fissiles are green. U-238 is fertile (capture only), so it gets a non-green
+// color to stay distinguishable from the fissile isotopes at a glance.
 // Pu-239: alpha phase; melting 639.4 C, boiling 3232 C. sigmaA is the isotope
 // total (fission 748 + capture 269 b).
 const inline material pu239 = {.name = "pu239",
@@ -43,7 +56,8 @@ const inline material pu239 = {.name = "pu239",
                                .z = 94,
                                .atomicMass = 239.05,
                                .sigmaA = 1017,
-                               .density = 19.86};
+                               .density = 19.86,
+                               .color = {.r = 34, .g = 139, .b = 34}}; // forest green
 // Uranium metal (U-233/235/238 share metal thermophysical properties):
 // melting 1132.2 C, boiling 4131 C, k ~27 W/(m*K). sigmaA is the isotope total:
 // U-233 579 b, U-235 681 b, U-238 2.68 b (capture only, not fissile).
@@ -56,7 +70,8 @@ const inline material u233 = {.name = "u233",
                               .z = 92,
                               .atomicMass = 233.04,
                               .sigmaA = 579,
-                              .density = 19.05};
+                              .density = 19.05,
+                              .color = {.r = 0, .g = 200, .b = 0}}; // bright green
 const inline material u235 = {.name = "u235",
                               .specificHeat = 0.12,
                               .meltPoint = 1405.3,
@@ -66,7 +81,8 @@ const inline material u235 = {.name = "u235",
                               .z = 92,
                               .atomicMass = 235.04,
                               .sigmaA = 681,
-                              .density = 19.05};
+                              .density = 19.05,
+                              .color = {.r = 60, .g = 179, .b = 113}}; // medium sea green
 const inline material u238 = {.name = "u238",
                               .specificHeat = 0.12,
                               .meltPoint = 1405.3,
@@ -76,9 +92,11 @@ const inline material u238 = {.name = "u238",
                               .z = 92,
                               .atomicMass = 238.05,
                               .sigmaA = 2.68,
-                              .density = 19.05};
+                              .density = 19.05,
+                              .color = {.r = 139, .g = 69, .b = 19}}; // saddle brown (fertile)
 
 // --- coolant / moderator -----------------------------------------------------
+// Waters are blue.
 // Light water, liquid: freezing 0 C, boiling 100 C. sigmaA is per H2O molecule
 // (H 0.332 b x2). thermalExpansion is volumetric.
 const inline material water = {.name = "water",
@@ -90,7 +108,8 @@ const inline material water = {.name = "water",
                                .z = 7,
                                .atomicMass = 18.015,
                                .sigmaA = 0.664,
-                               .density = 0.997};
+                               .density = 0.997,
+                               .color = {.r = 65, .g = 105, .b = 225}}; // royal blue
 // Heavy water (D2O): freezing 3.82 C, boiling 101.4 C. sigmaA per molecule
 // (D 0.0005 b x2); the low absorption is why D2O moderates with natural uranium.
 const inline material waterHeavy = {.name = "waterHeavy",
@@ -102,7 +121,8 @@ const inline material waterHeavy = {.name = "waterHeavy",
                                     .z = 7,
                                     .atomicMass = 20.028,
                                     .sigmaA = 0.0012,
-                                    .density = 1.106};
+                                    .density = 1.106,
+                                    .color = {.r = 0, .g = 0, .b = 139}}; // dark blue
 
 // --- reflector / moderator ---------------------------------------------------
 // Beryllium: melting 1287 C, boiling 2470 C; low neutron absorption (0.0092 b),
@@ -116,7 +136,8 @@ const inline material beryllium = {.name = "beryllium",
                                    .z = 4,
                                    .atomicMass = 9.012,
                                    .sigmaA = 0.0092,
-                                   .density = 1.848};
+                                   .density = 1.848,
+                                   .color = {.r = 255, .g = 215, .b = 0}}; // gold
 // Lithium: liquid-metal coolant; melting 180.5 C, boiling 1342 C. Natural Li is
 // 71 b (Li-6 940 b, Li-7 0.045 b) -> isotopically separate Li-7 for coolant use;
 // Li-6 is the tritium-breeding isotope.
@@ -129,7 +150,8 @@ const inline material lithium = {.name = "lithium",
                                  .z = 3,
                                  .atomicMass = 6.94,
                                  .sigmaA = 71,
-                                 .density = 0.535};
+                                 .density = 0.535,
+                                 .color = {.r = 255, .g = 105, .b = 180}}; // hot pink
 
 // --- structural / control ----------------------------------------------------
 // Boron, crystalline: melting 2076 C, boiling 3927 C. sigmaA is natural boron
@@ -143,7 +165,8 @@ const inline material boron = {.name = "boron",
                                .z = 5,
                                .atomicMass = 10.81,
                                .sigmaA = 760,
-                               .density = 2.34};
+                               .density = 2.34,
+                               .color = {.r = 128, .g = 0, .b = 128}}; // purple
 // Carbon steel: melting ~1425-1530 C, k ~50 W/(m*K). atomicMass / sigmaA /
 // expansion are for iron (the dominant element).
 const inline material steel = {.name = "steel",
@@ -155,7 +178,8 @@ const inline material steel = {.name = "steel",
                                .z = 26,
                                .atomicMass = 55.845,
                                .sigmaA = 2.56,
-                               .density = 7.85};
+                               .density = 7.85,
+                               .color = {.r = 105, .g = 105, .b = 105}}; // dim gray
 // Aluminum: melting 660.3 C, boiling 2519 C.
 const inline material aluminum = {.name = "aluminum",
                                   .specificHeat = 0.897,
@@ -166,7 +190,8 @@ const inline material aluminum = {.name = "aluminum",
                                   .z = 13,
                                   .atomicMass = 26.982,
                                   .sigmaA = 0.233,
-                                  .density = 2.70};
+                                  .density = 2.70,
+                                  .color = {.r = 192, .g = 192, .b = 192}}; // silver
 // Soda-lime glass; melting is ill-defined (softens ~730 C, melts ~1400 C).
 // atomicMass / sigmaA are for SiO2 (the dominant oxide).
 const inline material glass = {.name = "glass",
@@ -178,4 +203,5 @@ const inline material glass = {.name = "glass",
                                .z = 12,
                                .atomicMass = 60.08,
                                .sigmaA = 0.171,
-                               .density = 2.52};
+                               .density = 2.52,
+                               .color = {.r = 175, .g = 238, .b = 238}}; // pale turquoise
