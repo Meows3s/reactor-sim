@@ -7,5 +7,5 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 find_package(Qt6 REQUIRED COMPONENTS Widgets PrintSupport)
 
-add_executable(reactor src/reactor.cpp src/main.cpp src/plots.cpp src/constants.h src/lib/qcustomplot.h src/lib/qcustomplot.cpp)
+add_executable(reactor src/sim.cpp src/sim.h src/main.cpp src/plots.cpp src/constants.h src/lib/qcustomplot.h src/lib/qcustomplot.cpp)
 target_link_libraries(reactor PRIVATE Qt6::Widgets Qt6::PrintSupport)

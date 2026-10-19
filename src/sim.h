@@ -12,6 +12,8 @@ public:
 
   // current mechanical state
   double temp;
+
+  void dump();
 };
 
 class sim {
@@ -21,6 +23,6 @@ public:
 
   simCell state[SIM_CELLS_X * SIM_CELLS_Y]; // fully updated physics tick
 
+  void dump();
   sim(const char* filename); // constructor, also loads the sim from a file
-  ~sim();
 };

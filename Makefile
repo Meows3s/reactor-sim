@@ -251,29 +251,29 @@ src/plots.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/plots.cpp.s
 .PHONY : src/plots.cpp.s
 
-src/reactor.o: src/reactor.cpp.o
-.PHONY : src/reactor.o
+src/sim.o: src/sim.cpp.o
+.PHONY : src/sim.o
 
 # target to build an object file
-src/reactor.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/reactor.cpp.o
-.PHONY : src/reactor.cpp.o
+src/sim.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/sim.cpp.o
+.PHONY : src/sim.cpp.o
 
-src/reactor.i: src/reactor.cpp.i
-.PHONY : src/reactor.i
+src/sim.i: src/sim.cpp.i
+.PHONY : src/sim.i
 
 # target to preprocess a source file
-src/reactor.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/reactor.cpp.i
-.PHONY : src/reactor.cpp.i
+src/sim.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/sim.cpp.i
+.PHONY : src/sim.cpp.i
 
-src/reactor.s: src/reactor.cpp.s
-.PHONY : src/reactor.s
+src/sim.s: src/sim.cpp.s
+.PHONY : src/sim.s
 
 # target to generate assembly for a file
-src/reactor.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/reactor.cpp.s
-.PHONY : src/reactor.cpp.s
+src/sim.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/reactor.dir/build.make CMakeFiles/reactor.dir/src/sim.cpp.s
+.PHONY : src/sim.cpp.s
 
 # Help Target
 help:
@@ -298,9 +298,9 @@ help:
 	@echo "... src/plots.o"
 	@echo "... src/plots.i"
 	@echo "... src/plots.s"
-	@echo "... src/reactor.o"
-	@echo "... src/reactor.i"
-	@echo "... src/reactor.s"
+	@echo "... src/sim.o"
+	@echo "... src/sim.i"
+	@echo "... src/sim.s"
 .PHONY : help
 
 
