@@ -7,7 +7,8 @@ public:
   material cellMaterial;
 
   // current nuclear state
-  double nFlux;
+  double fastFlux;
+  double thermalFlux; // thermal neutrons, not temperature !
 
   // current mechanical state
   double temp;
@@ -15,11 +16,11 @@ public:
 
 class sim {
 public:
-  simCell* getCell(int, int);
-  int tick(double);
+  int fastTick();
+  int thermalTick();
 
-  simCell thisFrame[SIM_CELLS_X * SIM_CELLS_Y]; // fully updated physics tick
+  simCell state[SIM_CELLS_X * SIM_CELLS_Y]; // fully updated physics tick
 
-  sim(const char* filename);
+  sim(const char* filename); // constructor, also loads the sim from a file
   ~sim();
 };
