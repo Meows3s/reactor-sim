@@ -14,10 +14,20 @@ sim::sim(const char* filename) {
 
   // build the map
   // TODO: make this extensible... somehow
-  std::map<std::string, material> matMap = {{"pu239", pu239},         {"u233", u233},         {"u235", u235},
-                                            {"u238", u238},           {"water", water},       {"waterHeavy", waterHeavy},
-                                            {"beryllium", beryllium}, {"lithium", lithium},   {"boron", boron},
-                                            {"steel", steel},         {"aluminum", aluminum}, {"glass", glass}};
+  std::map<std::string, material> matMap = {
+      {"pu239",      pu239     },
+      {"u233",       u233      },
+      {"u235",       u235      },
+      {"u238",       u238      },
+      {"water",      water     },
+      {"waterHeavy", waterHeavy},
+      {"beryllium",  beryllium },
+      {"lithium",    lithium   },
+      {"boron",      boron     },
+      {"steel",      steel     },
+      {"aluminum",   aluminum  },
+      {"glass",      glass     }
+  };
 
   std::ifstream setupFile(filename);
 
@@ -29,6 +39,7 @@ sim::sim(const char* filename) {
    * note: if unspecified, everything is assumed to be DEFAULT_MATERIAL. Don't question it
    * */
 
+  this->state.resize(N_CELLS);
   simCell defaultCell = {.cellMaterial = matMap.find(DEFAULT_MATERIAL)->second,
                          .fastFlux = DEFAULT_FASTFLUX,
                          .thermalFlux = DEFAULT_THERMALFLUX,
@@ -72,15 +83,17 @@ sim::sim(const char* filename) {
   std::cout << "done loading." << std::endl;
 }
 
+int sim::indexOf(int x, int y) { return (x + SIM_CELLS_X * y); }
+
 // debug utils
 void simCell::dump() {
   std::cout << "cell material: " << this->cellMaterial.name << "\n cell fast neutron flux: " << this->fastFlux
-            << "\n cell thermal neutron flux: " << this->thermalFlux << "\ncell temperature: " << this->temp
-            << "\ncell density: " << this->cellMaterial.density << std::endl;
+            << "\n cell thermal neutron flux: " << this->thermalFlux << "\ncell temperature: " << this->temp << std::endl;
 }
 
 void sim::dump() {
   for (int i = 0; i < N_CELLS; i++) {
+    std::cout << "\ncell number " << i << std::endl;
     this->state[i].dump();
   }
 }

@@ -20,9 +20,13 @@ public:
 
 class sim {
 public:
-  int fastTick();
-  int thermalTick();
+  void fastNeutronTick();
+  void thermalNeutronTick();
+  void tempTick();
+
+  int indexOf(int, int);
   void dump();
+
   sim(const char* filename); // constructor, also loads the sim from a file
 
   std::vector<simCell> state;
