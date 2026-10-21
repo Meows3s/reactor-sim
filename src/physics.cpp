@@ -20,16 +20,36 @@ void sim::neutronTick() {
       simCell left = this->state[indexOf(x - 1, y)];
 
       // because neutrons diffuse equally, the flux in should be about 1/4 of the flux of all adjacent cells...?
-      double newFastFlux += (top.fastFlux + bottom.fastFlux + right.fastFlux + left.fastFlux) * 0.25;
+      double newFastFlux = (top.fastFlux + bottom.fastFlux + right.fastFlux + left.fastFlux) * 0.25;
+      double newThermalFlux = (top.thermalFlux + bottom.thermalFlux + right.thermalFlux + left.thermalFlux) * 0.25;
+
+      // we also need to actually remove this flux from neighboring cells for conservation of mass n stuff
+      newState[indexOf(x, y + 1)].fastFlux -= 0.25 * newFastFlux;       // fast top
+      newState[indexOf(x, y - 1)].fastFlux -= 0.25 * newFastFlux;       // fast bottom
+      newState[indexOf(x + 1, y)].fastFlux -= 0.25 * newFastFlux;       // fast right
+      newState[indexOf(x - 1, y)].fastFlux -= 0.25 * newFastFlux;       // fast left
+      newState[indexOf(x, y + 1)].thermalFlux -= 0.25 * newThermalFlux; // thermal top
+      newState[indexOf(x, y - 1)].thermalFlux -= 0.25 * newThermalFlux; // thermal bottom
+      newState[indexOf(x + 1, y)].thermalFlux -= 0.25 * newThermalFlux; // thermal right
+      newState[indexOf(x - 1, y)].thermalFlux -= 0.25 * newThermalFlux; // thermal left
 
       // fast fission may occur
       newFastFlux += (newFastFlux * thisCell.cellMaterial.FFF);
 
       // moderation may occur
+      newFastFlux -= thisCell.fastFlux * thisCell.cellMaterial.moderation;
+      newThermalFlux += thisCell.fastFlux * thisCell.cellMaterial.moderation;
 
-      // assume neutrons flow out to all sides equally, divide by 4
+      // thermal absorption may occur
+      newThermalFlux -= thisCell.thermalFlux * thisCell.cellMaterial.sigmaA * 0.01; // yeah idk about this one cheif
+
+      // thermal fission may occur
+      newFastFlux += thisCell.thermalFlux * thisCell.cellMaterial.FFF;
     }
   }
+
+  // update everything at once
+  this->state = newState;
 }
 
 // update material temperatures

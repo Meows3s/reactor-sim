@@ -20,8 +20,7 @@ public:
 
 class sim {
 public:
-  void fastNeutronTick();
-  void thermalNeutronTick();
+  void neutronTick();
   void tempTick();
 
   int indexOf(int, int);

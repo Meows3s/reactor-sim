@@ -9,6 +9,6 @@
 #define DEFAULT_THERMALFLUX 0
 #define DEFAULT_TEMP 300
 
-#define SIM_CELLS_X 2 // sim width x axis, number of cells
-#define SIM_CELLS_Y 2 // sim width y axis. number of cells
+#define SIM_CELLS_X 3 // sim width x axis, number of cells
+#define SIM_CELLS_Y 3 // sim width y axis. number of cells
 #define N_CELLS SIM_CELLS_X* SIM_CELLS_Y

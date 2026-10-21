@@ -40,6 +40,7 @@ sim::sim(const char* filename) {
    * */
 
   this->state.resize(N_CELLS);
+
   simCell defaultCell = {.cellMaterial = matMap.find(DEFAULT_MATERIAL)->second,
                          .fastFlux = DEFAULT_FASTFLUX,
                          .thermalFlux = DEFAULT_THERMALFLUX,
@@ -83,12 +84,12 @@ sim::sim(const char* filename) {
   std::cout << "done loading." << std::endl;
 }
 
-int sim::indexOf(int x, int y) { return (x + SIM_CELLS_X * y); }
+int sim::indexOf(int x, int y) { return (x + (SIM_CELLS_X * y)); }
 
 // debug utils
 void simCell::dump() {
-  std::cout << "cell material: " << this->cellMaterial.name << "\n cell fast neutron flux: " << this->fastFlux
-            << "\n cell thermal neutron flux: " << this->thermalFlux << "\ncell temperature: " << this->temp << std::endl;
+  std::cout << "cell material: " << this->cellMaterial.name << "\ncell fast neutron flux: " << this->fastFlux
+            << "\ncell thermal neutron flux: " << this->thermalFlux << "\ncell temperature: " << this->temp << std::endl;
 }
 
 void sim::dump() {
